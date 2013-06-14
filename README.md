@@ -1,6 +1,8 @@
 ruby-amqp-publish-files
 =======================
 
+:boom: **Strongly consider using [ModCloth's amqp-tools](https://github.com/modcloth/amqp-tools) instead.** :boom:
+
 ## General
 
 Reads file names from STDIN and publishes their content over AMQP
