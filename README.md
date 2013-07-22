@@ -1,7 +1,9 @@
 ruby-amqp-publish-files
 =======================
 
-:boom: **Strongly consider using [ModCloth's amqp-tools](https://github.com/modcloth/amqp-tools) instead.** :boom:
+Quick and dirty for getting JSON docs pushed to an AMQP broker (i.e. RabbitMQ)
+
+If you want something more robust, use [ModCloth's amqp-tools](https://github.com/modcloth/amqp-tools) instead.
 
 ## General
 
