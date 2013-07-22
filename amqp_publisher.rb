@@ -7,13 +7,12 @@ require 'trollop'
 
 def main
   if opts[:verbose]
-    print 'publishing to '
-    puts opts[:exchange]
-    print 'at '
-    puts opts[:uri]
-    print 'using routing-key '
-    puts opts[:'routing-key']
-    puts '------------------------------'
+    puts <<-EOF.gsub(/^\s+/, '')
+    publishing to #{opts[:exchange]}
+    at #{opts[:url]}
+    using routing-key #{opts[:'routing-key']}
+    ------------------------------
+    EOF
   end
 
   begin
@@ -27,10 +26,7 @@ def main
       File.open(filename, 'r') do |f|
         msg = f.read
         exchange.publish(msg, message_options)
-        if opts[:verbose]
-          print "#{Time.now} "
-          puts "#{filename}"
-        end
+        puts "#{Time.now} #{filename}" if opts[:verbose]
       end
     end
   ensure
@@ -49,14 +45,14 @@ def opts
 end
 
 def exchange_options
-  @exchange_options ||= {
+  {
     :durable => true,
     :autodelete => false,
   }
 end
 
 def message_options
-  @message_options ||= {
+  {
     :content_type => 'application/json',
     :content_encoding => 'UTF-8',
     :message_id => uuid,
